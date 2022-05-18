@@ -1,10 +1,11 @@
 @extends('dashboard.layout')
 @section('content')
 <div class="col-12">
-    <h1>Create Post</h1>
+    <h1>Actualizar Post #{{  $post->id  }} {{  $post->title  }}</h1>
     @include('dashboard.fragment._errors-form')
-    <form action="{{  route('post.store')  }}" method="post">
+    <form action="{{  route('post.update', $post->id)  }}" method="post">
         @csrf
+        @method('PUT')
         <div class="mb-3">
             <label for="titleInput" class="form-label">Titulo</label>
             <input type="text" class="form-control" name="title" id="titleInput" placeholder="Escribe el titulo del post...">
@@ -28,7 +29,7 @@
             @endif
         </div>
         <div class="mb-3">
-            <label for="categoriesInput" class="form-label"></label>
+            <label for="categoriesInput" class="form-label">Categoria</label>
             <select class="form-control" name="category_id" id="categoriesInput">
                 <option value="-1" disabled selected>Select Option</option>
                 @foreach ($categories as $id => $title)
