@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Post\PutRequest;
 use App\Http\Requests\Post\StoreRequest;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
 use App\Models\Category;
 use App\Models\Post;
 
@@ -30,9 +28,10 @@ class PostController extends Controller
      */
     public function create()
     {
-        $categories = Category::pluck('title','id');              
+        $categories = Category::pluck('title','id');  
+        $post = new Post();         
         // dd($categories);
-        return view('dashboard.post.create', compact('categories'));
+        return view('dashboard.post.create', compact('categories', 'post'));
     }
 
     /**
@@ -94,9 +93,10 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(PutRequest $request, Post $post)
     {
-        //
+        // dd($request->validated());
+        $post->update($request->validated());
     }
 
     /**
@@ -107,6 +107,6 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        dd($post);
     }
 }
