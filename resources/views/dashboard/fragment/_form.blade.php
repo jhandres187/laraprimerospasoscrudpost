@@ -41,8 +41,8 @@
                 <label for="postedInput" class="form-label">Posted</label>
                 <select class="form-control" name="posted" id="postedInput">
                     <option value="-1" disabled selected>Select Option</option>
-                    <option {{  old('posted', '') == 'yes' ? 'selected' : $post->posted;  }} value="yes">Si</option>
-                    <option {{  old('posted', '') == 'not' ? 'selected' : $post->posted;  }} value="not">No</option>
+                    <option {{  old('posted', $post->posted) == 'yes' ? 'selected' : ''  }} value="yes">Si</option>
+                    <option {{  old('posted', $post->posted) == 'not' ? 'selected' : ''  }} value="not">No</option>
                 </select>
                 @if ($errors->has('posted'))
                     <small id="helpId" class="form-text text-danger">

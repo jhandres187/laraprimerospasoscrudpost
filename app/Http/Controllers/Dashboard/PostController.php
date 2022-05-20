@@ -60,6 +60,11 @@ class PostController extends Controller
         // echo request('title');
         // dd(request('title'));
         // dd($request);
+        
+        // return route("post.create");
+        // return redirect("/post/create");
+        // return redirect()->route("post.create");
+        return to_route("post.index");
     }
 
     /**
@@ -70,7 +75,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return view("dashboard.post.show", compact('post'));
     }
 
     /**
@@ -97,6 +102,8 @@ class PostController extends Controller
     {
         // dd($request->validated());
         $post->update($request->validated());
+        // $request->session()->flash('status','Registro Actualizado');
+        return to_route("post.index")->with('status','Registro Actualizado');
     }
 
     /**
@@ -107,6 +114,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        dd($post);
+        $post->delete();
+        return to_route("post.index");
     }
 }

@@ -6,17 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class PutRequest extends FormRequest
 {
-    static public function myRules()
-    {
-        return [
-            'title' => 'required|min:5|max:500',
-            // 'slug' => 'required|min:5|max:500|unique:posts',
-            'content' => 'required|min:10|max:500',
-            'category_id' => 'required|integer',
-            'description' => 'required|min:10|max:500',
-            'posted' => 'required',
-        ];
-    }
+
 
     /**
      * Determine if the user is authorized to make this request.
@@ -35,14 +25,15 @@ class PutRequest extends FormRequest
      */
     public function rules()
     {
-        return $this->myRules();
-        // return [
-        //     'title' => 'required|min:5|max:500',
-        //     'slug' => 'required|min:5|max:500',
-        //     'content' => 'required|min:10|max:500',
-        //     'category_id' => 'required|integer',
-        //     'description' => 'required|min:10|max:500',
-        //     'posted' => 'required',
-        // ];
+        // dd($this->route("post")->id); //recuperar la data del post
+        // return $this->myRules();
+        return [
+            'title' => 'required|min:5|max:500',
+            'slug' => 'required|min:5|max:500|unique:posts,slug,'.$this->route("post")->id,
+            'content' => 'required|min:10|max:500',
+            'category_id' => 'required|integer',
+            'description' => 'required|min:10|max:500',
+            'posted' => 'required',
+        ];
     }
 }
