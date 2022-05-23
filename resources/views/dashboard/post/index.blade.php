@@ -15,7 +15,7 @@
                 @foreach ($posts as $p)
                     <tr>
                         <td scope="row">{{  $p->title  }}</td>
-                        <td>CATEGORIA</td>
+                        <td>{{  $p->category->title  }}</td>
                         <td>{{  $p->posted  }}</td>
                         <td>
                             <a href="{{  route('post.show', $p)  }}" class="btn btn-success">ver</a>
