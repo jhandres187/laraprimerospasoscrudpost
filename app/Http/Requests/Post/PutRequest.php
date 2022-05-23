@@ -34,6 +34,7 @@ class PutRequest extends FormRequest
             'category_id' => 'required|integer',
             'description' => 'required|min:10|max:500',
             'posted' => 'required',
+            'image' => 'mimes:jpg,jpeg,png|max:10240'
         ];
     }
 }

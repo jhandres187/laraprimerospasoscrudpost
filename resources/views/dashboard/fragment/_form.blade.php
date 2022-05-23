@@ -74,4 +74,19 @@
                     </small>
                 @endif
             </div>
+            @isset($page)
+                @if ($page == "edit")
+                    <div class="mb-3">
+                        <label for="ImagenInput" class="form-label">Imagen</label>
+                        <input class="form-control" type="file" name="image" id="ImagenInput">
+                        @if ($errors->has('description'))
+                            <small id="helpId" class="form-text text-danger">
+                                @foreach ($errors->get('image') as $e)
+                                    {{  $e  }}
+                                @endforeach
+                            </small>
+                        @endif
+                    </div>
+                @endif
+            @endisset
             <button type="submit" class="btn btn-primary">Enviar</button>
