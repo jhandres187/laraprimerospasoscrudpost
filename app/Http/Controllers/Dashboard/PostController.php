@@ -19,7 +19,7 @@ class PostController extends Controller
     {
         // dd(Category::find(3)->posts);
         $posts = Post::paginate('1');
-        return view('dashboard.post.index',compact('posts'));
+        return view('layouts.post.index',compact('posts'));
     }
 
     /**
@@ -32,7 +32,7 @@ class PostController extends Controller
         $categories = Category::pluck('title','id');  
         $post = new Post();         
         // dd($categories);
-        return view('dashboard.post.create', compact('categories', 'post'));
+        return view('layouts.post.create', compact('categories', 'post'));
     }
 
     /**
@@ -76,7 +76,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return view("dashboard.post.show", compact('post'));
+        return view("layouts.post.show", compact('post'));
     }
 
     /**
@@ -89,7 +89,7 @@ class PostController extends Controller
     {
         $categories = Category::pluck('title','id');              
         // dd($categories);
-        return view('dashboard.post.edit', compact('categories', 'post'));
+        return view('layouts.post.edit', compact('categories', 'post'));
     }
 
     /**

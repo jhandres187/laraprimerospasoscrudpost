@@ -18,7 +18,7 @@ class CategoryController extends Controller
     {
         // dd(Category::find(3)->categories);
         $categories = Category::paginate('1');
-        return view('dashboard.category.index',compact('categories'));
+        return view('layouts.category.index',compact('categories'));
     }
 
     /**
@@ -30,7 +30,7 @@ class CategoryController extends Controller
     {
         $category = new Category();         
         // dd($categories);
-        return view('dashboard.category.create', compact('category'));
+        return view('layouts.category.create', compact('category'));
     }
 
     /**
@@ -53,7 +53,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return view("dashboard.category.show", compact('category'));
+        return view("layouts.category.show", compact('category'));
     }
 
     /**
@@ -64,7 +64,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('dashboard.category.edit', compact('category'));
+        return view('layouts.category.edit', compact('category'));
     }
 
     /**

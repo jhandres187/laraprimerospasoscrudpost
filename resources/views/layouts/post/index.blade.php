@@ -1,4 +1,4 @@
-@extends('dashboard.layout')
+@extends('layouts.dashboard')
 @section('content')
     <div class="col-12">
         <a href="{{  route('post.create')  }}" class="btn btn-primary">Crear</a>
