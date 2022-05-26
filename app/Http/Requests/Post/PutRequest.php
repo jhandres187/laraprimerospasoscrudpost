@@ -2,7 +2,10 @@
 
 namespace App\Http\Requests\Post;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Response;
+use Illuminate\Validation\ValidationException;
 
 class PutRequest extends FormRequest
 {
@@ -16,6 +19,15 @@ class PutRequest extends FormRequest
     public function authorize()
     {
         return true;
+    }
+    //error en la api
+    function failedValidation(Validator $validator)
+    {
+        if($this->expectsJson()){//puede haber ocnflictos con la web por eso debemos 
+            // colocar accept aplication/json en el header para que al esperar un json actue y solo espera json la api
+            $response = new Response($validator->errors(),422);
+            throw new ValidationException($validator, $response);
+        }
     }
 
     /**

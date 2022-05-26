@@ -2,8 +2,11 @@
 
 namespace App\Http\Requests\Post;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Response;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 
 class StoreRequest extends FormRequest
 {
@@ -26,6 +29,16 @@ class StoreRequest extends FormRequest
             'description' => 'required|min:10|max:500',
             'posted' => 'required',
         ];
+    }
+    
+    //error en la api
+    function failedValidation(Validator $validator)
+    {
+        if($this->expectsJson()){//puede haber ocnflictos con la web por eso debemos 
+            // colocar accept aplication/json en el header para que al esperar un json actue y solo espera json la api
+            $response = new Response($validator->errors(),422);
+            throw new ValidationException($validator, $response);
+        }
     }
 
     /**
