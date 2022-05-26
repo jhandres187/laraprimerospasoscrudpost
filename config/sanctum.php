@@ -18,7 +18,7 @@ return [
         'localhost,localhost:3000,127.0.0.1,127.0.0.1:8000,::1,laraprimerospasoscrudpost.test',
         env('APP_URL') ? ','.parse_url(env('APP_URL'), PHP_URL_HOST) : ''
     ))),
-
+//aca se deben agregar los dominios para que la api acepte las peticiones por la spa autentication
     /*
     |--------------------------------------------------------------------------
     | Sanctum Guards
